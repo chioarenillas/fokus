@@ -1,4 +1,3 @@
-import React from 'react'
 /* resumen del usuario
 estado del “servicio”
 accesos rápidos */

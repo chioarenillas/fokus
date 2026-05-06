@@ -1,4 +1,3 @@
-import React from 'react'
 /* perfil usuario
 cambiar contraseña
 logout 
