@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import Layout from "./components/Layouts/Layout";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
 import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Dashboard from "./pages/Host/Dashboard";
-import Settings from "./pages/Host/Settings";
-import Register from "./pages/Register";
-import Tasks from "./pages/Host/Tasks";
-import HostLayout from "./components/HostLayout";
+import Dashboard from "./pages/Host/Dashboard/Dashboard";
+import Settings from "./pages/Host/Settings/Settings";
+import Register from "./pages/Login/Register";
+import Tasks from "./pages/Host/Tasks/Tasks";
+import HostLayout from "./components/Layouts/HostLayout";
 
 export default function App() {
   return (

@@ -1,7 +1,8 @@
+import "./Login.css";
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
 type LoginFormData = {
   email: string;
@@ -80,35 +81,48 @@ export default function Login() {
   }
 
   return (
-    <div className="login-container">
-      {location.state?.message && (
-        <h3 className="login-first">{location.state.message}</h3>
-      )}
-      <h1>Sign in to your account</h1>
-      {error && <h3 className="login-first">{error}</h3>}
-      <form onSubmit={handleSubmit} className="login-form">
-        <input
-          name="email"
-          onChange={handleChange}
-          type="email"
-          placeholder="Email address (try: user@user.com)"
-          value={loginFormData.email}
-        />
-        <input
-          name="password"
-          onChange={handleChange}
-          type="password"
-          placeholder="Password (try: user123456)"
-          value={loginFormData.password}
-        />
-        <button disabled={status === "submitting"}>
-          {status === "submitting" ? "Logging in..." : "Log in"}
-        </button>
-      </form>
-      <p>Don't have an account? </p>
-      <button>
-        <a href="/register">Sign up</a>
-      </button>
+    <div className="loginContainer">
+      <div className="loginCard">
+        {location.state?.message && (
+          <h3 className="login-first">{location.state.message}</h3>
+        )}
+        <div className="loginCardHeader">
+          <h2>Sign in to your account</h2>
+        </div>
+        {error && <h3 className="login-first">{error}</h3>}
+        <form onSubmit={handleSubmit} className="loginForm">
+          <div className="formGroup">
+            <label>Email:</label>
+            <input
+              name="email"
+              onChange={handleChange}
+              type="email"
+              placeholder="user@user.com (try: user@user.com)"
+              value={loginFormData.email}
+            />
+          </div>
+          <div className="formGroup">
+            <label>Password:</label>
+
+            <input
+              name="password"
+              onChange={handleChange}
+              type="password"
+              placeholder="user123456 (try: user123456)"
+              value={loginFormData.password}
+            />
+          </div>
+          <button disabled={status === "submitting"}>
+            {status === "submitting" ? "Logging in..." : "Log in"}
+          </button>
+        </form>
+        <div className="loginSignup">
+          <p>Don't have an account? </p>
+          <button>
+            <a href="/register">Sign up</a>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
