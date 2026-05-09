@@ -1,47 +1,22 @@
-import "./Tasks.css"
-
-type TaskStatus = "Completed" | "In Progress" | "Pending";
-
-interface Task {
-  id: number;
-  title: string;
-  description: string;
-  priority: "High" | "Medium" | "Low";
-  status: TaskStatus;
-}
-
-const tasks: Task[] = [
-  {
-    id: 1,
-    title: "Design Landing Page",
-    description: "Create hero section and responsive layout",
-    priority: "High",
-    status: "Completed",
-  },
-  {
-    id: 2,
-    title: "Fix Auth Bug",
-    description: "Resolve login token issue",
-    priority: "High",
-    status: "In Progress",
-  },
-  {
-    id: 3,
-    title: "Prepare Presentation",
-    description: "Slides for investor meeting",
-    priority: "Medium",
-    status: "Pending",
-  },
-  {
-    id: 4,
-    title: "Create Dashboard Charts",
-    description: "Add analytics graphs",
-    priority: "Low",
-    status: "Completed",
-  },
-];
+import { useState } from "react";
+import "./Tasks.css";
+import { tasks, type TaskStatus, type Task } from "../../../data/data";
 
 export default function Tasks(): React.JSX.Element {
+  const [activeFilter, setActiveFilter] = useState<"All" | TaskStatus>("All");
+    const [taskList, setTaskList] = useState<Task[]>(tasks);
+
+  const filters: ("All" | TaskStatus)[] = ["All", "Completed", "In Progress", "Pending"];
+
+  const filteredTasks = taskList.filter((task) => {
+    if (activeFilter === "All") return true;
+    return task.status === activeFilter;
+  });
+
+  const handleDelete = (id: number) => {
+    setTaskList((prev) => prev.filter((task) => task.id !== id));
+  };
+
   return (
     <div className="tasksContainer">
       <div className="tasksHeader">
@@ -53,14 +28,19 @@ export default function Tasks(): React.JSX.Element {
       </div>
 
       <div className="tasksFilters">
-        <button className="activeFilter">All</button>
-        <button>Completed</button>
-        <button>In Progress</button>
-        <button>Pending</button>
+        {filters.map((filter) => (
+          <button
+            key={filter}
+            className={activeFilter === filter ? "activeFilter" : ""}
+            onClick={() => setActiveFilter(filter)}
+          >
+            {filter}
+          </button>
+        ))}
       </div>
 
       <div className="tasksGrid">
-        {tasks.map((task) => (
+        {filteredTasks.map((task) => (
           <div key={task.id} className="taskCard">
             <div className="taskCardTop">
               <span className={`priorityBadge ${task.priority.toLowerCase()}`}>
@@ -85,7 +65,12 @@ export default function Tasks(): React.JSX.Element {
             </div>
             <div className="taskCardBottom">
               <button>Edit</button>
-              <button className="deleteBtn">Delete</button>
+              <button 
+                className="deleteBtn" 
+                onClick={() => handleDelete(task.id)}
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}

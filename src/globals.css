@@ -104,12 +104,21 @@ button:hover {
   background-color: var(--gray-500);
   color: var(--gray-900);
 }
+.logout-button button{
+  background-color: var(--gray-500);
+  color: var(--gray-900);
+}
+.logout-button button:hover{
+  background-color: var(--gray-900);
+  color: var(--purple-500);
+}
 
 a {
   text-decoration: none;
 }
 .layoutnav{
   padding: 20px;
+  justify-content: space-between;
 }
 
 
