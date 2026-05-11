@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "./Tasks.css";
-import type { Task, Props } from "../../../data/data"
+import type { Task, Props, TaskStatus } from "../../../data/data"
 import TaskModal from "../../../components/TaskModal";
-
-type TaskStatus = Task["status"];
 
 export default function Tasks({
   tasks,

@@ -31,7 +31,7 @@ export default function Dashboard({
           <p>Welcome back 👋 Here's your productivity overview.</p>
         </div>
 
-        <button onClick={handleOpenNewTaskModal}>New Task</button>
+        <button onClick={handleOpenNewTaskModal}>+ New Task</button>
       </div>
 
       {isModalOpen && (

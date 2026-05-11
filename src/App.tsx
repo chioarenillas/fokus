@@ -10,10 +10,10 @@ import Settings from "./pages/Host/Settings/Settings";
 import Register from "./pages/Login/Register";
 import Tasks from "./pages/Host/Tasks/Tasks";
 import HostLayout from "./components/Layouts/HostLayout";
-import { useTasks } from "./useTasks";
+import { useTasksFirebase } from "./useTasksFirebase";
 
 export default function App() {
-  const tasksProps = useTasks()
+  const tasksProps = useTasksFirebase()
   return (
     <Routes>
       <Route element={<Layout />}>
