@@ -1,86 +1,96 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Tasks.css";
-import { tasks, type TaskStatus, type Task } from "../../../data/data";
+import type { Task } from "../../../Types";
 
-export default function Tasks(): React.JSX.Element {
+type TaskStatus = Task["status"];
+
+type TasksProps = {
+  tasks: Task[];
+  deleteTask: (id: string) => void;
+  isModalOpen: boolean;
+  editingTask: Task | null;
+  openModal: (task?: Task) => void;
+  closeModal: () => void;
+  handleSaveTask: (taskData: Omit<Task, 'id' | 'createdAt'>) => void;
+};
+
+export default function Tasks({
+  tasks,
+  deleteTask,
+  isModalOpen,
+  editingTask,
+  openModal,
+  closeModal,
+  handleSaveTask,
+}: TasksProps): React.JSX.Element {
+  
   const [activeFilter, setActiveFilter] = useState<"All" | TaskStatus>("All");
-  const [taskList, setTaskList] = useState<Task[]>(tasks);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
-  const [newTask, setNewTask] = useState<{
+  
+  // Estado local SOLO para los datos del formulario del modal
+  const [formData, setFormData] = useState<{
     title: string;
     description: string;
-    priority: "High" | "Medium" | "Low";
+    priority: "high" | "medium" | "low";
     status: TaskStatus;
   }>({
     title: "",
     description: "",
-    priority: "Medium",
-    status: "Pending",
+    priority: "medium",
+    status: "pending",
   });
+
+  // Sincronizar el formulario cuando cambia el estado del modal o la tarea en edición
+  useEffect(() => {
+    if (isModalOpen) {
+      if (editingTask) {
+        // Modo Edición: Rellenar con datos de la tarea
+        setFormData({
+          title: editingTask.title,
+          description: editingTask.description,
+          priority: editingTask.priority,
+          status: editingTask.status,
+        });
+      } else {
+        // Modo Creación: Limpiar formulario
+        setFormData({
+          title: "",
+          description: "",
+          priority: "medium",
+          status: "pending",
+        });
+      }
+    }
+  }, [isModalOpen, editingTask]);
 
   const filters: ("All" | TaskStatus)[] = [
     "All",
-    "Completed",
-    "In Progress",
-    "Pending",
+    "completed",
+    "pending",
+    // Añade "in-progress" si lo tienes en tus tipos, si no, quítalo
   ];
 
-  const filteredTasks = taskList.filter((task) => {
+  const filteredTasks = tasks.filter((task) => {
     if (activeFilter === "All") return true;
     return task.status === activeFilter;
   });
 
-  const handleNewTask = () => {
-    if (!newTask.title.trim()) return;
-
-    const task: Task = {
-      id: Date.now(),
-      ...newTask,
-    };
-
-    setTaskList((prev) => [...prev, task]);
-    setNewTask({
-      title: "",
-      description: "",
-      priority: "Medium",
-      status: "Pending",
-    });
-    setIsModalOpen(false);
+  const handleNewTaskClick = () => {
+    openModal(); // Esto pone editingTask en null internamente
   };
 
-  const handleEdit = (task: Task) => {
-    setEditingTaskId(task.id);
-    setNewTask({
-      title: task.title,
-      description: task.description,
-      priority: task.priority,
-      status: task.status,
-    });
-    setIsModalOpen(true);
+  const handleEditClick = (task: Task) => {
+    openModal(task); // Esto establece editingTask
   };
 
-  const handleSaveEdit = () => {
-    if (!newTask.title.trim() || editingTaskId === null) return;
-
-    setTaskList((prev) =>
-      prev.map((task) =>
-        task.id === editingTaskId ? { ...task, ...newTask } : task,
-      ),
-    );
-
-    setNewTask({
-      title: "",
-      description: "",
-      priority: "Medium",
-      status: "Pending",
-    });
-    setEditingTaskId(null);
-    setIsModalOpen(false);
-  };
-
-  const handleDelete = (id: number) => {
-    setTaskList((prev) => prev.filter((task) => task.id !== id));
+  const handleSubmit = () => {
+    if (!formData.title.trim()) return;
+    
+    // Llama a la función global que decide si crear o actualizar basado en editingTask
+    handleSaveTask(formData);
+    
+    // closeModal() se llama dentro de handleSaveTask en useTasks, 
+    // pero si prefieres hacerlo aquí, puedes descomentar la siguiente línea:
+    // closeModal(); 
   };
 
   return (
@@ -90,7 +100,7 @@ export default function Tasks(): React.JSX.Element {
           <h1>Tasks</h1>
           <p>Manage your workflow and stay productive.</p>
         </div>
-        <button onClick={() => setIsModalOpen(true)}>+ New Task</button>
+        <button onClick={handleNewTaskClick}>+ New Task</button>
       </div>
 
       <div className="tasksFilters">
@@ -100,60 +110,60 @@ export default function Tasks(): React.JSX.Element {
             className={activeFilter === filter ? "activeFilter" : ""}
             onClick={() => setActiveFilter(filter)}
           >
-            {filter}
+            {filter === "All" ? "All" : filter.charAt(0).toUpperCase() + filter.slice(1)}
           </button>
         ))}
       </div>
 
       <div className="tasksGrid">
-        {filteredTasks.map((task) => (
-          <div key={task.id} className="taskCard">
-            <div className="taskCardTop">
-              <span className={`priorityBadge ${task.priority.toLowerCase()}`}>
-                {task.priority}
-              </span>
+        {filteredTasks.length > 0 ? (
+          filteredTasks.map((task) => (
+            <div key={task.id} className="taskCard">
+              <div className="taskCardTop">
+                <span className={`priorityBadge ${task.priority}`}>
+                  {task.priority}
+                </span>
 
-              <span
-                className={`statusBadge ${
-                  task.status === "Completed"
-                    ? "completed"
-                    : task.status === "In Progress"
-                      ? "progress"
-                      : "pending"
-                }`}
-              >
-                {task.status}
-              </span>
+                <span
+                  className={`statusBadge ${task.status}`}
+                >
+                  {task.status}
+                </span>
+              </div>
+              <div className="taskCardBody">
+                <h2>{task.title}</h2>
+                <p>{task.description}</p>
+              </div>
+              <div className="taskCardBottom">
+                <button onClick={() => handleEditClick(task)}>Edit</button>
+                <button
+                  className="deleteBtn"
+                  onClick={() => deleteTask(task.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-            <div className="taskCardBody">
-              <h2>{task.title}</h2>
-              <p>{task.description}</p>
-            </div>
-            <div className="taskCardBottom">
-              <button onClick={() => handleEdit(task)}>Edit</button>
-              <button
-                className="deleteBtn"
-                onClick={() => handleDelete(task.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p style={{ gridColumn: "1/-1", textAlign: "center", color: "#666" }}>
+            No tasks found for this filter.
+          </p>
+        )}
       </div>
 
       {isModalOpen && (
-        <div className="modalOverlay" onClick={() => setIsModalOpen(false)}>
+        <div className="modalOverlay" onClick={closeModal}>
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-            <h2>{editingTaskId !== null ? "Edit Task" : "Create New Task"}</h2>
+            <h2>{editingTask ? "Edit Task" : "Create New Task"}</h2>
 
             <div className="formGroup">
               <label>Title</label>
               <input
                 type="text"
-                value={newTask.title}
+                value={formData.title}
                 onChange={(e) =>
-                  setNewTask({ ...newTask, title: e.target.value })
+                  setFormData({ ...formData, title: e.target.value })
                 }
                 placeholder="Enter task title"
               />
@@ -162,9 +172,9 @@ export default function Tasks(): React.JSX.Element {
             <div className="formGroup">
               <label>Description</label>
               <textarea
-                value={newTask.description}
+                value={formData.description}
                 onChange={(e) =>
-                  setNewTask({ ...newTask, description: e.target.value })
+                  setFormData({ ...formData, description: e.target.value })
                 }
                 placeholder="Enter task description"
               />
@@ -173,60 +183,49 @@ export default function Tasks(): React.JSX.Element {
             <div className="formGroup">
               <label>Priority</label>
               <select
-                value={newTask.priority}
+                value={formData.priority}
                 onChange={(e) =>
-                  setNewTask({
-                    ...newTask,
-                    priority: e.target.value as "High" | "Medium" | "Low",
+                  setFormData({
+                    ...formData,
+                    priority: e.target.value as "high" | "medium" | "low",
                   })
                 }
               >
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
               </select>
             </div>
 
             <div className="formGroup">
               <label>Status</label>
               <select
-                value={newTask.status}
+                value={formData.status}
                 onChange={(e) =>
-                  setNewTask({
-                    ...newTask,
+                  setFormData({
+                    ...formData,
                     status: e.target.value as TaskStatus,
                   })
                 }
               >
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+                {/* Añade "in-progress" si corresponde */}
               </select>
             </div>
 
             <div className="modalActions">
               <button
                 className="cancelBtn"
-                onClick={() => {
-                  setIsModalOpen(false);
-                  setEditingTaskId(null);
-                  setNewTask({
-                    title: "",
-                    description: "",
-                    priority: "Medium",
-                    status: "Pending",
-                  });
-                }}
+                onClick={closeModal}
               >
                 Cancel
               </button>
               <button
                 className="createBtn"
-                onClick={
-                  editingTaskId !== null ? handleSaveEdit : handleNewTask
-                }
+                onClick={handleSubmit}
               >
-                {editingTaskId !== null ? "Save Changes" : "Create Task"}
+                {editingTask ? "Save Changes" : "Create Task"}
               </button>
             </div>
           </div>

@@ -10,8 +10,10 @@ import Settings from "./pages/Host/Settings/Settings";
 import Register from "./pages/Login/Register";
 import Tasks from "./pages/Host/Tasks/Tasks";
 import HostLayout from "./components/Layouts/HostLayout";
+import { useTasks } from "./useTasks";
 
 export default function App() {
+  const tasksProps = useTasks()
   return (
     <Routes>
       <Route element={<Layout />}>
@@ -30,9 +32,9 @@ export default function App() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<Dashboard />} />
+          <Route index element={<Dashboard {...tasksProps} />} />
+          <Route path="tasks" element={<Tasks {...tasksProps}  />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="tasks" element={<Tasks />} />
         </Route>
       </Route>
     </Routes>
