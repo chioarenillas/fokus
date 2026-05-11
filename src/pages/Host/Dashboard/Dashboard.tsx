@@ -1,15 +1,7 @@
 import "./Dashboard.css";
-import { type Task } from "../../../data/data";
+import { type Props } from "../../../data/data";
 import TaskModal from "../../../components/TaskModal";
 
-type DashboardProps = {
-  tasks: Task[];
-  isModalOpen: boolean;
-  editingTask: Task | null;
-  openModal: (task?: Task) => void;
-  closeModal: () => void;
-  handleSaveTask: (taskData: Omit<Task, 'id' | 'createdAt'>) => void;
-};
 
 export default function Dashboard({
   tasks,
@@ -18,15 +10,13 @@ export default function Dashboard({
   openModal,
   closeModal,
   handleSaveTask,
-}: DashboardProps): React.JSX.Element {
+}: Props): React.JSX.Element {
 
-    const totalTasks = tasks.length;
+  const totalTasks = tasks.length;
   const completedTasks = tasks.filter((t) => t.status === 'Completed').length;
   const inProgressTasks = tasks.filter((t) => t.status === 'In Progress').length;
   const pendingTasks = tasks.filter((t) => t.status === 'Pending').length;
-
-
-  const recentTasks = [...tasks].slice(-3).reverse();
+  const recentTasks = [...tasks].slice(0,3);
 
   const handleOpenNewTaskModal = () => {
     openModal(); 

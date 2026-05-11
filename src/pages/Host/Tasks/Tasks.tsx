@@ -1,19 +1,9 @@
 import { useState } from "react";
 import "./Tasks.css";
-import type { Task } from "../../../data/data"
+import type { Task, Props } from "../../../data/data"
 import TaskModal from "../../../components/TaskModal";
 
 type TaskStatus = Task["status"];
-
-type TasksProps = {
-  tasks: Task[];
-  deleteTask: (id: string) => void;
-  isModalOpen: boolean;
-  editingTask: Task | null;
-  openModal: (task?: Task) => void;
-  closeModal: () => void;
-  handleSaveTask: (taskData: Omit<Task, 'id' | 'createdAt'>) => void;
-};
 
 export default function Tasks({
   tasks,
@@ -23,7 +13,7 @@ export default function Tasks({
   openModal,
   closeModal,
   handleSaveTask
-}: TasksProps): React.JSX.Element {
+}: Props): React.JSX.Element {
   
   const [activeFilter, setActiveFilter] = useState<"All" | TaskStatus>("All");
   

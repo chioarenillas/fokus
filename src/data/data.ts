@@ -6,7 +6,15 @@ export interface Task {
   status: "Completed" | "In Progress" | "Pending";
   createdAt: string;
 }
-
+export interface Props  {
+  tasks: Task[];
+  deleteTask: (id: string) => void;
+  isModalOpen: boolean;
+  editingTask: Task | null;
+  openModal: (task?: Task) => void;
+  closeModal: () => void;
+  handleSaveTask: (taskData: Omit<Task, 'id' | 'createdAt'>) => void;
+};
 
 export const initialTasks: Task[] = [
   {
