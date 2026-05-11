@@ -1,33 +1,7 @@
 import { useState } from "react";
-import type { Task } from "./Types";
+import type { Task } from "./data/data";
+import { initialTasks } from "./data/data";
 
-
-const initialTasks: Task[] = [
-  {
-    id: "1",
-    title: "Complete project proposal",
-    description: "Finish the initial draft for the new client project",
-    status: "pending",
-    priority: "high",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: "2",
-    title: "Review team feedback",
-    description: "Go through the comments from the last sprint review",
-    status: "completed",
-    priority: "medium",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: "3",
-    title: "Update documentation",
-    description: "Ensure all API endpoints are properly documented",
-    status: "pending",
-    priority: "low",
-    createdAt: new Date().toISOString(),
-  },
-];
 
 export const useTasks = () => {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
@@ -68,7 +42,7 @@ export const useTasks = () => {
     setIsModalOpen(false)
     setEditingTask(null)
   }
-  const handleSaveTask = (taskData: Omit<Task, 'id' | 'createAt'>) => {
+  const handleSaveTask = (taskData: Omit<Task, 'id' | 'createdAt'>) => {
     if (editingTask){
         updateTask(editingTask.id, taskData)
     }else{

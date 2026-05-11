@@ -163,17 +163,17 @@
   font-weight: 700;
 }
 
-.completed {
+.Completed {
   background-color: #dcfce7;
   color: #166534;
 }
 
-.progress {
+.Progress {
   background-color: #fef3c7;
   color: #92400e;
 }
 
-.pending {
+.Pending {
   background-color: #fee2e2;
   color: #991b1b;
 }

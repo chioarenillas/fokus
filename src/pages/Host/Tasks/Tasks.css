@@ -112,17 +112,17 @@
   font-weight: 700;
 }
 
-.priorityBadge.high {
+.priorityBadge.High {
   background-color: #fee2e2;
   color: #991b1b;
 }
 
-.priorityBadge.medium {
+.priorityBadge.Medium {
   background-color: #fef3c7;
   color: #92400e;
 }
 
-.priorityBadge.low {
+.priorityBadge.Low {
   background-color: #dcfce7;
   color: #166534;
 }
@@ -136,17 +136,17 @@
   font-weight: 700;
 }
 
-.statusBadge.completed {
+.statusBadge.Completed {
   background-color: #dcfce7;
   color: #166534;
 }
 
-.statusBadge.progress {
+.statusBadge.Progress {
   background-color: #ddd6fe;
   color: var(--purple-700);
 }
 
-.statusBadge.pending {
+.statusBadge.Pending {
   background-color: #f3f4f6;
   color: var(--gray-700);
 }
