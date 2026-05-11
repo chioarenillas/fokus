@@ -29,11 +29,11 @@ export default function Tasks({
   });
 
   const handleNewTaskClick = () => {
-    openModal(); // Esto pone editingTask en null internamente
+    openModal(); 
   };
 
   const handleEditClick = (task: Task) => {
-    openModal(task); // Esto establece editingTask
+    openModal(task); 
   };
 
 

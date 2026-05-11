@@ -1,6 +1,7 @@
 import "./Dashboard.css";
 import { type Props } from "../../../data/data";
 import TaskModal from "../../../components/TaskModal";
+import { NavLink } from "react-router-dom";
 
 
 export default function Dashboard({
@@ -43,7 +44,8 @@ export default function Dashboard({
       )}
 
       <div className="statsGrid">
-        <div className="statCard">
+
+        <NavLink className="statCard" to="tasks">
           <div className="statTop">
             <div className="statInfo">
               <h3>Total Tasks</h3>
@@ -51,9 +53,9 @@ export default function Dashboard({
             </div>
             <div className="statIcon">📋</div>
           </div>
-        </div>
+        </NavLink>
 
-        <div className="statCard">
+        <NavLink className="statCard" to="tasks">
           <div className="statTop">
             <div className="statInfo">
               <h3>Completed</h3>
@@ -61,9 +63,9 @@ export default function Dashboard({
             </div>
             <div className="statIcon">✅</div>
           </div>
-        </div>
+        </NavLink>
 
-        <div className="statCard">
+        <NavLink className="statCard" to="tasks">
           <div className="statTop">
             <div className="statInfo">
               <h3>In Progress</h3>
@@ -71,9 +73,9 @@ export default function Dashboard({
             </div>
             <div className="statIcon">📈</div>
           </div>
-        </div>
+        </NavLink>
 
-        <div className="statCard">
+        <NavLink className="statCard" to="tasks">
           <div className="statTop">
             <div className="statInfo">
               <h3>Pending</h3>
@@ -81,9 +83,8 @@ export default function Dashboard({
             </div>
             <div className="statIcon">⏳</div>
           </div>
-        </div>
-              </div>
-
+        </NavLink>
+</div>
 
       <div className="dashboardMain">
         <div className="dashboardPanel">
