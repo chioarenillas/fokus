@@ -28,12 +28,6 @@ header {
   height: 32px;
 }
 
-.siteLogo h1 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0;
-}
-
 .nav {
   display: flex;
   gap: 18px;
@@ -41,7 +35,7 @@ header {
 
 .nav a {
   color: var(--gray-500);
-  font-size: 14px;
+  font-size: 1.2rem;
   font-weight: 500;
 
   padding: 6px 10px;

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Tasks.css";
-import type { Task, Props, TaskStatus } from "../../../data/data"
+import type { Task, Props, TaskStatus } from "../../../data/data";
 import TaskModal from "../../../components/TaskModal";
+import { useSearchParams } from "react-router-dom";
 
 export default function Tasks({
   tasks,
@@ -10,17 +11,28 @@ export default function Tasks({
   editingTask,
   openModal,
   closeModal,
-  handleSaveTask
+  handleSaveTask,
 }: Props): React.JSX.Element {
-  
+  const [searchParams] = useSearchParams();
   const [activeFilter, setActiveFilter] = useState<"All" | TaskStatus>("All");
-  
+
+  useEffect(() => {
+    const filterParam = searchParams.get("filter");
+    if (
+      filterParam &&
+      ["Completed", "In Progress", "Pending"].includes(filterParam)
+    ) {
+      setActiveFilter(filterParam as TaskStatus);
+    } else {
+      setActiveFilter("All");
+    }
+  }, [searchParams]);
 
   const filters: ("All" | TaskStatus)[] = [
     "All",
     "Completed",
-    "Pending",
     "In Progress",
+    "Pending",
   ];
 
   const filteredTasks = tasks.filter((task) => {
@@ -29,13 +41,12 @@ export default function Tasks({
   });
 
   const handleNewTaskClick = () => {
-    openModal(); 
+    openModal();
   };
 
   const handleEditClick = (task: Task) => {
-    openModal(task); 
+    openModal(task);
   };
-
 
   return (
     <div className="tasksContainer">
@@ -68,9 +79,7 @@ export default function Tasks({
                   {task.priority}
                 </span>
 
-                <span
-                  className={`statusBadge ${task.status}`}
-                >
+                <span className={`statusBadge ${task.status}`}>
                   {task.status}
                 </span>
               </div>
@@ -97,11 +106,12 @@ export default function Tasks({
       </div>
 
       {isModalOpen && (
-        <TaskModal 
-          editingTask={editingTask} 
+        <TaskModal
+          editingTask={editingTask}
           closeModal={closeModal}
           isModalOpen={isModalOpen}
-          handleSaveTask={handleSaveTask}/>
+          handleSaveTask={handleSaveTask}
+        />
       )}
     </div>
   );

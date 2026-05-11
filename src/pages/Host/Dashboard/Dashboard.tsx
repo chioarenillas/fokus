@@ -55,7 +55,7 @@ export default function Dashboard({
           </div>
         </NavLink>
 
-        <NavLink className="statCard" to="tasks">
+        <NavLink className="statCard" to="tasks?filter=Completed">
           <div className="statTop">
             <div className="statInfo">
               <h3>Completed</h3>
@@ -65,7 +65,7 @@ export default function Dashboard({
           </div>
         </NavLink>
 
-        <NavLink className="statCard" to="tasks">
+        <NavLink className="statCard" to="tasks?filter=In Progress">
           <div className="statTop">
             <div className="statInfo">
               <h3>In Progress</h3>
@@ -75,7 +75,7 @@ export default function Dashboard({
           </div>
         </NavLink>
 
-        <NavLink className="statCard" to="tasks">
+        <NavLink className="statCard" to="tasks?filter=Pending">
           <div className="statTop">
             <div className="statInfo">
               <h3>Pending</h3>
