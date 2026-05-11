@@ -86,17 +86,6 @@ export default function Dashboard(): React.JSX.Element {
         </div>
 
         <div className="sidebarSection">
-          <div className="dashboardPanel">
-            <div className="panelHeader">
-              <h2>Quick Actions</h2>
-            </div>
-
-            <div className="quickActions">
-              <button>Create Task</button>
-              <button>Invite Team</button>
-              <button>Reports</button>
-            </div>
-          </div>
 
           <div className="dashboardPanel">
             <div className="panelHeader">
@@ -135,6 +124,27 @@ export default function Dashboard(): React.JSX.Element {
                 <div className="progressBar">
                   <div className="progressFill" style={{ width: "90%" }} />
                 </div>
+                </div>
+              <div className="progressItem">
+                <div className="progressTop">
+                  <span>Thursday</span>
+                  <span>80%</span>
+                </div>
+
+                <div className="progressBar">
+                  <div className="progressFill" style={{ width: "80%" }} />
+                </div>
+                </div>
+              <div className="progressItem">
+                <div className="progressTop">
+                  <span>Friday</span>
+                  <span>50%</span>
+                </div>
+
+                <div className="progressBar">
+                  <div className="progressFill" style={{ width: "50%" }} />
+                </div>
+      
               </div>
             </div>
           </div>

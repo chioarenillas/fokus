@@ -6,6 +6,7 @@ export default function Tasks(): React.JSX.Element {
   const [activeFilter, setActiveFilter] = useState<"All" | TaskStatus>("All");
   const [taskList, setTaskList] = useState<Task[]>(tasks);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
   const [newTask, setNewTask] = useState<{
     title: string;
     description: string;
@@ -18,25 +19,26 @@ export default function Tasks(): React.JSX.Element {
     status: "Pending",
   });
 
-  const filters: ("All" | TaskStatus)[] = ["All", "Completed", "In Progress", "Pending"];
+  const filters: ("All" | TaskStatus)[] = [
+    "All",
+    "Completed",
+    "In Progress",
+    "Pending",
+  ];
 
   const filteredTasks = taskList.filter((task) => {
     if (activeFilter === "All") return true;
     return task.status === activeFilter;
   });
 
-  const handleDelete = (id: number) => {
-    setTaskList((prev) => prev.filter((task) => task.id !== id));
-  };
-
   const handleNewTask = () => {
     if (!newTask.title.trim()) return;
-    
+
     const task: Task = {
       id: Date.now(),
       ...newTask,
     };
-    
+
     setTaskList((prev) => [...prev, task]);
     setNewTask({
       title: "",
@@ -45,6 +47,40 @@ export default function Tasks(): React.JSX.Element {
       status: "Pending",
     });
     setIsModalOpen(false);
+  };
+
+  const handleEdit = (task: Task) => {
+    setEditingTaskId(task.id);
+    setNewTask({
+      title: task.title,
+      description: task.description,
+      priority: task.priority,
+      status: task.status,
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleSaveEdit = () => {
+    if (!newTask.title.trim() || editingTaskId === null) return;
+
+    setTaskList((prev) =>
+      prev.map((task) =>
+        task.id === editingTaskId ? { ...task, ...newTask } : task,
+      ),
+    );
+
+    setNewTask({
+      title: "",
+      description: "",
+      priority: "Medium",
+      status: "Pending",
+    });
+    setEditingTaskId(null);
+    setIsModalOpen(false);
+  };
+
+  const handleDelete = (id: number) => {
+    setTaskList((prev) => prev.filter((task) => task.id !== id));
   };
 
   return (
@@ -94,9 +130,9 @@ export default function Tasks(): React.JSX.Element {
               <p>{task.description}</p>
             </div>
             <div className="taskCardBottom">
-              <button>Edit</button>
-              <button 
-                className="deleteBtn" 
+              <button onClick={() => handleEdit(task)}>Edit</button>
+              <button
+                className="deleteBtn"
                 onClick={() => handleDelete(task.id)}
               >
                 Delete
@@ -109,14 +145,16 @@ export default function Tasks(): React.JSX.Element {
       {isModalOpen && (
         <div className="modalOverlay" onClick={() => setIsModalOpen(false)}>
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-            <h2>Create New Task</h2>
-            
+            <h2>{editingTaskId !== null ? "Edit Task" : "Create New Task"}</h2>
+
             <div className="formGroup">
               <label>Title</label>
               <input
                 type="text"
                 value={newTask.title}
-                onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+                onChange={(e) =>
+                  setNewTask({ ...newTask, title: e.target.value })
+                }
                 placeholder="Enter task title"
               />
             </div>
@@ -125,7 +163,9 @@ export default function Tasks(): React.JSX.Element {
               <label>Description</label>
               <textarea
                 value={newTask.description}
-                onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+                onChange={(e) =>
+                  setNewTask({ ...newTask, description: e.target.value })
+                }
                 placeholder="Enter task description"
               />
             </div>
@@ -134,7 +174,12 @@ export default function Tasks(): React.JSX.Element {
               <label>Priority</label>
               <select
                 value={newTask.priority}
-                onChange={(e) => setNewTask({ ...newTask, priority: e.target.value as "High" | "Medium" | "Low" })}
+                onChange={(e) =>
+                  setNewTask({
+                    ...newTask,
+                    priority: e.target.value as "High" | "Medium" | "Low",
+                  })
+                }
               >
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
@@ -146,7 +191,12 @@ export default function Tasks(): React.JSX.Element {
               <label>Status</label>
               <select
                 value={newTask.status}
-                onChange={(e) => setNewTask({ ...newTask, status: e.target.value as TaskStatus })}
+                onChange={(e) =>
+                  setNewTask({
+                    ...newTask,
+                    status: e.target.value as TaskStatus,
+                  })
+                }
               >
                 <option value="Pending">Pending</option>
                 <option value="In Progress">In Progress</option>
@@ -155,11 +205,28 @@ export default function Tasks(): React.JSX.Element {
             </div>
 
             <div className="modalActions">
-              <button className="cancelBtn" onClick={() => setIsModalOpen(false)}>
+              <button
+                className="cancelBtn"
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setEditingTaskId(null);
+                  setNewTask({
+                    title: "",
+                    description: "",
+                    priority: "Medium",
+                    status: "Pending",
+                  });
+                }}
+              >
                 Cancel
               </button>
-              <button className="createBtn" onClick={handleNewTask}>
-                Create Task
+              <button
+                className="createBtn"
+                onClick={
+                  editingTaskId !== null ? handleSaveEdit : handleNewTask
+                }
+              >
+                {editingTaskId !== null ? "Save Changes" : "Create Task"}
               </button>
             </div>
           </div>
