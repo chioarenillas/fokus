@@ -82,8 +82,7 @@
   align-items: center;
   justify-content: center;
 
-  background-color: var(--bg-secondary);
-  color: var(--accent-dark);
+  background-color: var(--accent-color);
 }
 
 .dashboardMain {
@@ -141,7 +140,7 @@
 }
 
 .taskItem:hover {
-  background-color: #eceef2;
+  background-color: var(--accent-color);
 }
 
 .taskInfo h3 {

@@ -141,7 +141,7 @@
 
 .statusBadge.Pending {
   background-color: #f3f4f6;
-  color: var(--text-primary);
+  color: #991b1b;
 }
 
 .taskCardBody {
@@ -232,6 +232,7 @@
   border-radius: 12px;
   font-size: 0.875rem;
   color: var(--text-primary);
+  background-color: var(--bg);
   transition: border-color 0.2s ease;
 }
 

@@ -1,12 +1,14 @@
 :root {
   /* Modo Claro (Default) */
   --bg-primary: #f3f4f6;
-  --bg-secondary: #c4b5fd;
-  --bg-cards: #fff;
+  --bg-secondary: #cecece;
+  --bg-other: #bd9df5;
+  --bg-cards: #ffffff;
   --text-primary: #1f2937;
+  --text-primary-light: #e3e3e3;
   --text-secondary: #6b7280;
   --border-color: #e5e7eb;
-  --accent-color: #7c3aed;
+  --accent-color: #a67dec;
   --accent-hover: #5b21b6;
   --accent-dark: #2e1065;
   --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -15,16 +17,17 @@
   /* Modo Oscuro */
 
   [data-theme="dark"] {
-    --bg-primary: #58407f;
-    --bg-secondary: #4b2c7e;
-    --bg-cards: #525a67;
-    --text-primary: #f9fafb;
-    --text-secondary: #bec6d4;
-    --border-color: #374151;
-    --accent-color: #4d2297;
-    --accent-hover: rgb(60, 68, 135);
-    --accent-dark: #2e1065;
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --bg-primary: #0f172a;       
+  --bg-secondary: #1e293b;  
+  --bg-other: #3f2b61;   
+  --bg-cards: #4c3f64;       
+  --text-primary: #f1f5f9;     
+  --text-secondary: #d0d9e5;   
+  --border-color: #475569;     
+  --accent-color: #6d4eb5;     
+  --accent-hover: #7a66b8;     
+  --accent-dark: #39156f;     
+  --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
   }
 
 
@@ -124,7 +127,7 @@ img {
 }
 button {
   background-color: var(--accent-color);
-  color: var(--bg-cards);
+  color: var(--text-primary);
   text-align: center;
   text-decoration: none;
   border: none;

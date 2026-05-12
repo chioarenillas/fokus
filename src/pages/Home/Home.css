@@ -6,7 +6,12 @@
   display: flex;
   flex-direction: column;
 
-  background-color: var(--bg-cards);
+  background-color: var(--bg-secondary);
+}
+.heroOverlay h1,
+.heroBadge,
+.secondaryButton {
+  color: var(--text-primary-light);
 }
 
 
@@ -39,7 +44,7 @@
   flex-direction: column;
   gap: 24px;
 
-  color: var(--bg-cards);
+  color: var(--text-primary);
 }
 
 .heroBadge {
@@ -95,7 +100,7 @@
 
   border: 1px solid rgba(255,255,255,0.12);
 
-  color: var(--bg-cards);
+  color: var(--text-primary-light);
 
   display: inline-flex;
   align-items: center;
@@ -247,7 +252,7 @@
 
   text-align: center;
 
-  color: var(--bg-cards);
+  color: var(--text-primary-light);
 
   display: flex;
   flex-direction: column;
@@ -276,12 +281,11 @@
   align-self: center;
 
   background-color: var(--bg-cards);
-
-  color: var(--accent-dark);
+  color: var(--text-primary);
 }
 
 .ctaCard .button:hover {
-  background-color: var(--bg-cards);
+  background-color: var(--bg-secondary);
 }
 
 
