@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
 
-  background-color: var(--gray-100);
+  background-color: var(--bg-cards);
 }
 
 
@@ -39,7 +39,7 @@
   flex-direction: column;
   gap: 24px;
 
-  color: white;
+  color: var(--bg-cards);
 }
 
 .heroBadge {
@@ -95,7 +95,7 @@
 
   border: 1px solid rgba(255,255,255,0.12);
 
-  color: white;
+  color: var(--bg-cards);
 
   display: inline-flex;
   align-items: center;
@@ -134,7 +134,7 @@
 .sectionHeader h2 {
   font-size: 2.5rem;
 
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 
 .sectionHeader p {
@@ -144,7 +144,7 @@
 
   line-height: 1.7;
 
-  color: var(--gray-500);
+  color: var(--text-secondary);
 }
 
 
@@ -167,9 +167,9 @@
 
 
 .featureCard {
-  background-color: white;
+  background-color: var(--bg-cards);
 
-  border: 1px solid var(--gray-200);
+  border: 1px solid var(--border-color);
 
   border-radius: 24px;
 
@@ -204,8 +204,8 @@
 
   background: linear-gradient(
     135deg,
-    var(--purple-300),
-    var(--purple-500)
+    var(--bg-secondary),
+    var(--accent-color)
   );
 
   font-size: 2rem;
@@ -214,7 +214,7 @@
 .featureCard h3 {
   font-size: 1.4rem;
 
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 
 .featureCard p {
@@ -222,7 +222,7 @@
 
   line-height: 1.7;
 
-  color: var(--gray-500);
+  color: var(--text-secondary);
 }
 
 
@@ -237,8 +237,8 @@
 
   background: linear-gradient(
     135deg,
-    var(--purple-700),
-    var(--purple-900)
+    var(--accent-hover),
+    var(--accent-dark)
   );
 
   border-radius: 32px;
@@ -247,7 +247,7 @@
 
   text-align: center;
 
-  color: white;
+  color: var(--bg-cards);
 
   display: flex;
   flex-direction: column;
@@ -275,13 +275,13 @@
 
   align-self: center;
 
-  background-color: white;
+  background-color: var(--bg-cards);
 
-  color: var(--purple-900);
+  color: var(--accent-dark);
 }
 
 .ctaCard .button:hover {
-  background-color: var(--gray-100);
+  background-color: var(--bg-cards);
 }
 
 

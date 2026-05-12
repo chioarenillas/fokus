@@ -1,20 +1,33 @@
 :root {
-  /* Morados */
-  --purple-900: #2e1065;
-  --purple-700: #5b21b6;
-  --purple-500: #7c3aed;
-  --purple-300: #c4b5fd;
 
-  /* Grises */
-  --gray-900: #111827;
-  --gray-700: #374151;
-  --gray-500: #6b7280;
-  --gray-200: #e5e7eb;
-  --gray-100: #f3f4f6;
+  /* Modo Claro (Default) */
+  --bg-primary: #f3f4f6; /* --gray-200: */
+  --bg-secondary: #c4b5fd; /* purple 300 */
+  --bg-cards: #fff;/* grey 100 */
+  --text-primary: #1f2937; /* gray 700 */
+  --text-secondary: #6b7280; /* --gray-500: */
+  --border-color: #e5e7eb; /* --gray-200: */
+  --accent-color: #7c3aed; /* purple-500 */
+  --accent-hover: #5b21b6; /* purple-700 */
+  --accent-dark: #2e1065; /* purple-900 */
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 
-  /* Base */
-  --bg: #ffffff;
+/* Modo Oscuro */
+[data-theme='dark'] {
+  --bg-primary: #111827;       
+  --bg-secondary: #1f2937; 
+  --bg-cards: #fff;  /* de que color? */  
+  --text-primary: #f9fafb;     
+  --text-secondary: #9ca3af;   
+  --border-color: #374151;     
+  --accent-color: #6366f1;     
+  --accent-hover: #818cf8;   
+  --accent-dark: #2e1065; /* purple-900 ?? */
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
 }
+}
+
+
 #root {
   min-height: 100vh;
   display: flex;
@@ -37,8 +50,9 @@ body {
     Segoe UI,
     Roboto,
     sans-serif;
-  background-color: var(--bg);
-  color: var(--gray-900);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.5;
 }
 
@@ -71,8 +85,8 @@ img {
 
 /* GENERAL STYLES */
 .button {
-  background-color: var(--purple-300);
-  color: var(--gray-900);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   display: inline-block;
   max-width: 350px;
   text-align: center;
@@ -87,12 +101,12 @@ img {
 }
 
 .button:hover {
-  background-color: var(--gray-500);
-  color: var(--gray-900);
+  background-color: var(--text-secondary);
+  color: var(--text-primary);
 }
 button {
-  background-color: var(--purple-300);
-  color: var(--gray-900);
+  background-color: var(--accent-color);
+  color: var(--bg-cards);
   text-align: center;
   text-decoration: none;
   border: none;
@@ -105,16 +119,16 @@ button {
 }
 
 button:hover {
-  background-color: var(--gray-500);
-  color: var(--gray-900);
+  background-color: var(--text-secondary);
+  color: var(--text-primary);
 }
 .logout-button button{
-  background-color: var(--gray-500);
-  color: var(--gray-900);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
 }
 .logout-button button:hover{
-  background-color: var(--gray-900);
-  color: var(--purple-500);
+  background-color: var(--text-primary);
+  color: var(--accent-color);
 }
 
 a {

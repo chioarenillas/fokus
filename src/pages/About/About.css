@@ -3,7 +3,7 @@
   min-height: 100vh;
   padding: 60px 20px;
   color: #1a1a1a;
-  background-color: #f9fafb;
+  background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -22,7 +22,7 @@
 
 .aboutHero p {
   font-size: 1.2rem;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -44,7 +44,7 @@
 .aboutMission p,
 .aboutClosing p {
   font-size: 1.1rem;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -58,14 +58,14 @@
   font-size: 1.1rem;
   margin: 10px 0;
   padding: 10px 15px;
-  background: white;
+  background: var(--bg-cards);
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .aboutMission,
 .aboutClosing {
-  background: white;
+  background: var(--bg-cards);
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);

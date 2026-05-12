@@ -8,12 +8,12 @@ footer {
   justify-content: center;
 
   padding: 24px 32px;
-  border-top: 1px solid var(--gray-200);
+  border-top: 1px solid var(--border-color);
 
-  background-color: var(--gray-200);
+  background-color: var(--border-color);
 
   font-size: 13px;
-  color: var(--gray-500);
+  color: var(--text-secondary);
 
   position: relative;
 }
@@ -27,6 +27,6 @@ footer::before {
 
   width: 120px;
   height: 2px;
-  background: var(--purple-500);
+  background: var(--accent-color);
   opacity: 0.6;
 }

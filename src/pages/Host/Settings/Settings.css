@@ -7,7 +7,7 @@
 
   background: linear-gradient(
     180deg,
-    var(--gray-100) 0%,
+    var(--bg-cards) 0%,
     #ffffff 100%
   );
 
@@ -18,12 +18,12 @@
 
 .settingsHeader h1 {
   font-size: 2rem;
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 
 .settingsHeader p {
   margin-top: 6px;
-  color: var(--gray-500);
+  color: var(--text-secondary);
 }
 
 .settingsGrid {
@@ -38,9 +38,9 @@
 }
 
 .settingsCard {
-  background-color: white;
+  background-color: var(--bg-cards);
 
-  border: 1px solid var(--gray-200);
+  border: 1px solid var(--bg-primary);
 
   border-radius: 20px;
 
@@ -64,7 +64,7 @@
 
 .settingsCardHeader h2 {
   font-size: 1.3rem;
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 
 .settingsForm {
@@ -82,14 +82,14 @@
 .formGroup label {
   font-size: 14px;
   font-weight: 600;
-  color: var(--gray-700);
+  color: var(--text-primary);
 }
 
 .formGroup input,
 .formGroup textarea {
   width: 100%;
 
-  border: 1px solid var(--gray-200);
+  border: 1px solid var(--bg-primary);
 
   border-radius: 12px;
 
@@ -97,7 +97,7 @@
 
   font-size: 14px;
 
-  background-color: white;
+  background-color: var(--bg-cards);
 
   transition: border-color 0.2s ease,
               box-shadow 0.2s ease;
@@ -112,7 +112,7 @@
 .formGroup textarea:focus {
   outline: none;
 
-  border-color: var(--purple-500);
+  border-color: var(--accent-color);
 
   box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
 }
@@ -134,25 +134,25 @@
 
   border-radius: 14px;
 
-  background-color: var(--gray-100);
+  background-color: var(--bg-cards);
 }
 
 .toggleItem h3 {
   font-size: 1rem;
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 
 .toggleItem p {
   margin-top: 4px;
   font-size: 14px;
-  color: var(--gray-500);
+  color: var(--text-secondary);
 }
 
 .toggleItem input {
   width: 20px;
   height: 20px;
 
-  accent-color: var(--purple-500);
+  accent-color: var(--accent-color);
 
   cursor: pointer;
 }

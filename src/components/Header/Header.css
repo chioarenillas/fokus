@@ -5,9 +5,9 @@ header {
   justify-content: space-between;
 
   padding: 32px 32px;
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--bg-secondary);
 
-  background-color: var(--purple-300);
+  background-color: var(--bg-secondary);
 
   position: sticky;
   top: 0;
@@ -20,7 +20,7 @@ header {
   gap: 10px;
 
   text-decoration: none;
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 
 .siteLogo img {
@@ -34,7 +34,7 @@ header {
 }
 
 .nav a {
-  color: var(--gray-500);
+  color: var(--text-secondary);
   font-size: 1.2rem;
   font-weight: 500;
 
@@ -45,24 +45,24 @@ header {
 }
 
 .nav a:hover {
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 
 .nav a.active-link {
-  color: var(--purple-500);
+  color: var(--accent-color);
   font-weight: 600;
 }
 
 .nav a.active-link:hover {
-  color: var(--purple-700);
+  color: var(--accent-hover);
 }
 .nav a.login-active-link {
-  background-color: var(--gray-500);
-  color: var(--gray-900);
+  background-color: var(--text-secondary);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
 .nav a.login-active-link:hover {
-  background-color: var(--gray-900);
-  color: var(--purple-700);
+  background-color: var(--text-primary);
+  color: var(--accent-hover);
 }
