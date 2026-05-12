@@ -10,7 +10,7 @@ export const useTheme = () => {
     })
 
     useEffect(() => {
-        const root = window.document.documentElement
+        const root = document.documentElement
         root.setAttribute('data-theme', theme)
         localStorage.setItem('theme', theme)
     }, [theme])

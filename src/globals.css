@@ -11,20 +11,22 @@
   --accent-dark: #2e1065;
   --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 
+}
   /* Modo Oscuro */
+
   [data-theme="dark"] {
-    --bg-primary: #111827;
-    --bg-secondary: #1f2937;
-    --bg-cards: #242d39;
+    --bg-primary: #58407f;
+    --bg-secondary: #4b2c7e;
+    --bg-cards: #525a67;
     --text-primary: #f9fafb;
-    --text-secondary: #9ca3af;
+    --text-secondary: #bec6d4;
     --border-color: #374151;
-    --accent-color: #6366f1;
-    --accent-hover: #818cf8;
+    --accent-color: #4d2297;
+    --accent-hover: rgb(60, 68, 135);
     --accent-dark: #2e1065;
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
   }
-}
+
 
 #root {
   min-height: 100vh;
