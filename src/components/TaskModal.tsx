@@ -1,4 +1,3 @@
-import React from 'react'
 import { type Task } from "../data/data";
 import { useState, useEffect } from 'react';
 
