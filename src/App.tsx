@@ -10,7 +10,7 @@ import Settings from "./pages/Host/Settings/Settings";
 import Register from "./pages/Login/Register";
 import Tasks from "./pages/Host/Tasks/Tasks";
 import HostLayout from "./components/Layouts/HostLayout";
-import { useTasksFirebase } from "./useTasksFirebase";
+import { useTasksFirebase } from "./components/Hooks/useTasksFirebase";
 
 export default function App() {
   const tasksProps = useTasksFirebase()

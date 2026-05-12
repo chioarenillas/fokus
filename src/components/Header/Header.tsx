@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import  Logo from "../../assets/Logo.png"
 import "./Header.css"
+import { ThemeToggle } from "../ThemeToggle";
 
 export default function Header() {
   return (
@@ -22,6 +23,10 @@ export default function Header() {
         >
           Login
         </NavLink>
+            <div className="themeToggle">
+      <ThemeToggle/>
+    </div>
+
       </nav>
     </header>
   );

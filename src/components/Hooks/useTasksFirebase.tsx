@@ -10,10 +10,10 @@ import {
   orderBy,
   Timestamp
 } from "firebase/firestore";
-import { db } from "./firebase";
-import type { Task } from "./data/data";
-import { useAuth } from "./context/AuthContext";
-import { initialTasks } from "./data/data";
+import { db } from "../../firebase";
+import type { Task } from "../../data/data";
+import { useAuth } from "../../context/AuthContext";
+import { initialTasks } from "../../data/data";
 
 const COLLECTION_NAME = "tasks";
 
