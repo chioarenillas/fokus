@@ -2,19 +2,14 @@
 
 footer {
   margin-top: auto;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 24px 32px;
   border-top: 1px solid var(--border-color);
-
   background-color: var(--border-color);
-
   font-size: 13px;
   color: var(--text-secondary);
-
   position: relative;
 }
 
@@ -24,7 +19,6 @@ footer::before {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-
   width: 120px;
   height: 2px;
   background: var(--accent-color);

@@ -2,15 +2,12 @@
 
 .settingsContainer {
   min-height: 100vh;
-
   padding: 40px 24px;
-
   background: linear-gradient(
     180deg,
     var(--bg-cards) 0%,
     #ffffff 100%
   );
-
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -28,33 +25,25 @@
 
 .settingsGrid {
   display: grid;
-
   grid-template-columns: repeat(
     auto-fit,
     minmax(350px, 1fr)
   );
-
   gap: 24px;
 }
 
 .settingsCard {
   background-color: var(--bg-cards);
-
   border: 1px solid var(--bg-primary);
-
   border-radius: 20px;
-
   padding: 24px;
-
   box-shadow: 0 6px 16px rgba(0,0,0,0.04);
-
   transition: transform 0.2s ease,
               box-shadow 0.2s ease;
 }
 
 .settingsCard:hover {
   transform: translateY(-4px);
-
   box-shadow: 0 14px 28px rgba(0,0,0,0.08);
 }
 
@@ -88,17 +77,11 @@
 .formGroup input,
 .formGroup textarea {
   width: 100%;
-
   border: 1px solid var(--bg-primary);
-
   border-radius: 12px;
-
   padding: 14px;
-
   font-size: 14px;
-
   background-color: var(--bg-cards);
-
   transition: border-color 0.2s ease,
               box-shadow 0.2s ease;
 }
@@ -111,9 +94,7 @@
 .formGroup input:focus,
 .formGroup textarea:focus {
   outline: none;
-
   border-color: var(--accent-color);
-
   box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
 }
 
@@ -127,13 +108,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   gap: 16px;
-
   padding: 16px;
-
   border-radius: 14px;
-
   background-color: var(--bg-cards);
 }
 
@@ -151,9 +128,7 @@
 .toggleItem input {
   width: 20px;
   height: 20px;
-
   accent-color: var(--accent-color);
-
   cursor: pointer;
 }
 
