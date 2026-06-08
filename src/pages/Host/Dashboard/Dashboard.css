@@ -26,7 +26,15 @@
   color: var(--text-secondary);
   margin-top: 4px;
 }
-
+.charts{
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+.charts > * {
+  flex: 1;
+  min-width: 0;
+}
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -83,6 +91,9 @@
 }
 
 @media (max-width: 900px) {
+  .charts{
+    flex-direction: column;
+  }
   .dashboardMain {
     grid-template-columns: 1fr;
   }

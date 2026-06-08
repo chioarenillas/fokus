@@ -2,6 +2,8 @@ import "./Dashboard.css";
 import { type Props } from "../../../data/data";
 import TaskModal from "../../../components/TaskModal";
 import { NavLink } from "react-router-dom";
+import { SimpleBarChart } from "../../../components/Charts/SimpleBarChart";
+import { TasksPieChart } from "../../../components/Charts/PieChart";
 
 
 export default function Dashboard({
@@ -42,6 +44,23 @@ export default function Dashboard({
         isModalOpen={isModalOpen}
         handleSaveTask={handleSaveTask}/>
       )}
+
+      <div className="charts">
+        <SimpleBarChart 
+        total={totalTasks}
+        completed={completedTasks}
+        progress={inProgressTasks}
+        pending={pendingTasks}
+        />
+        
+        <TasksPieChart 
+        total={totalTasks}
+        completed={completedTasks}
+        progress={inProgressTasks}
+        pending={pendingTasks}
+        />
+
+      </div>
 
       <div className="statsGrid">
 
