@@ -89,11 +89,7 @@ img {
 
 /* GENERAL STYLES */
 .themeToggle button {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 20px;
   background: transparent;
-  border: 1px solid var(--border-color);
   color: var(--text-primary);
   padding: 8px 12px;
   border-radius: 50%;

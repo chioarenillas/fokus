@@ -1,9 +1,8 @@
 import "./Login.css";
 import { useState, type FormEvent, type ChangeEvent } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import {  useLocation, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { useAuth } from "../../context/AuthContext";
 
 type LoginFormData = {
   email: string;
