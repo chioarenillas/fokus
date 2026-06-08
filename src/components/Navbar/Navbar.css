@@ -77,4 +77,10 @@ header {
   .nav a{
     font-size: 1.2em;
   }
+  .hostlayout{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
 }

@@ -13,7 +13,7 @@ export default function HostLayout() {
 
   return (
     <>
-    <div className="nav layoutnav">
+    <div className="nav layoutnav hostlayout">
       <nav >
         <NavLink
           to="."
