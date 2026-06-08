@@ -1,12 +1,14 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import "../Header/Header.css";
+import "../Navbar/Navbar.css";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export default function HostLayout() {
   const navigate = useNavigate();
 
-  function fakeLogOut() {
-    localStorage.removeItem("loggedin");
-    navigate("/login");
+  async function handleLogout() {
+    await signOut(auth);
+    navigate("/login", {replace: true});
   }
 
   return (
@@ -35,7 +37,7 @@ export default function HostLayout() {
       </nav>
 
       <div className="logout-button">
-        <button onClick={fakeLogOut}>Log Out</button>
+        <button onClick={handleLogout}>Log Out</button>
       </div>
     </div>
 

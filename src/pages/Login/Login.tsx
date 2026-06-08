@@ -1,8 +1,9 @@
 import "./Login.css";
 import { useState, type FormEvent, type ChangeEvent } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useAuth } from "../../context/AuthContext";
 
 type LoginFormData = {
   email: string;
@@ -10,6 +11,7 @@ type LoginFormData = {
 };
 
 export default function Login() {
+
   console.log(auth.currentUser);
   const [loginFormData, setLoginFormData] = useState<LoginFormData>({
     email: "",
@@ -21,21 +23,18 @@ export default function Login() {
   const navigate = useNavigate();
   const from = location.state?.from || "/host";
 
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
     setError(null);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         loginFormData.email,
         loginFormData.password,
       );
-
-      const user = userCredential.user;
-      console.log(user);
-      localStorage.setItem("loggedin", "true");
 
       navigate(from, { replace: true });
     } catch (err: any) {
