@@ -30,7 +30,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => unsubscribe()
   }, [])
 
-  if (loading) return null
+  if (loading) return <div>Loading...</div>
 
   return (
     <AuthContext.Provider value={{ user }}>
